@@ -22,7 +22,8 @@ namespace MovieCollection.Models
 
         [Required(ErrorMessage = "This field is required!")]
         public String Rating { get; set; }
-        public Boolean Edited { get; set; }
+        public Boolean 
+            Edited { get; set; }
         public String LentTo { get; set; }
 
         [StringLength(25)]

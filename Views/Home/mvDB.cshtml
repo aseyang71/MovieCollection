@@ -25,6 +25,12 @@
         <tbody>
             @foreach (MovieCollection.Models.NewData i in Model)
             {
+                @if (i.Title == "Independence Day")
+                {
+                    return;
+                }
+                else
+                {
                 <tr>
                     <td>@i.Category</td>
                     <td>@i.Title</td>
@@ -35,6 +41,8 @@
                     <td>@i.LentTo</td>
                     <td>@i.Notes</td>
                 </tr>
+                }
+
             }
         </tbody>
 </table>

@@ -4,15 +4,30 @@
 @{
     ViewBag.Title = "Confirmation";
     ViewBag.h1 = "You submission has been successfully saved!";
+    ViewBag.h1x = "Movie: 'Independence Day' is currently banned from the website, data was not loaded";
 }
 
 @model MovieCollection.Models.NewData
 
-<div>
-    <h1>@ViewBag.h1</h1> 
-</div> 
+
+@if (Model.Title == "Independence Day")
+{
+    <div>
+        <h1 style="color:darkred;">@ViewBag.h1x</h1>
+    </div>
+}
+else
+{
+    <div>
+        <h1>@ViewBag.h1</h1>
+    </div>
+}
 
 <div>
     <br />
-    <h2>To view current movie list, click <a asp-action="mvDB">Here</a></h2>
+    <h3>To view current movie list, click <a asp-action="mvDB">Here</a></h3>
+</div>
+
+<div>
+    <h3>To enter another movie, click <a asp-action="Data">Return</a></h3>
 </div>
