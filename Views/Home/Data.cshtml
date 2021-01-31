@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "New Movie Data Entry";
+}
+
+@model MovieCollection.Models.NewData 
+
+
+<h2>New Movie Data Entry Form</h2>
+<form asp-action="Data" method="post">
+    <fieldset>
+        <div>
+            <label asp-for="Category">Category:</label>
+            <select asp-for="Category" required>
+                <option selected disabled>Select an option</option>
+                <option value="Action/Adventure">Action/Adventure</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Family">Family</option>
+                <option value="Horror/Suspense">Horror/Suspense</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+                <option value="Television">Television</option>
+                <option value="VHS">VHS</option>
+            </select>
+        </div>
+
+        <div>
+            <label asp-for="Title">Title:</label>
+            <input asp-for="Title" required />
+        </div>
+
+        <div>
+            <label asp-for="Year">Year:</label>
+            <input asp-for="Year" required />
+        </div>
+
+        <div>
+            <label asp-for="Director">Director:</label>
+            <input asp-for="Director" required />
+        </div>
+
+        <div>
+            <label asp-for="Rating">Rating:</label>
+            <select asp-for="Rating" required>
+                <option selected disabled>Select an option</option>
+                <option value="G">G</option>
+                <option value="NR">NR</option>
+                <option value="PG">PG</option>
+                <option value="PG-13">PG-13</option>
+                <option value="R">R</option>
+                <option value="TV-14">TV-14</option>
+                <option value="TV-PG">TV-PG</option>
+                <option value="TV-Y7">TV-Y7</option>
+                <option value="UR">UR</option>
+            </select>
+        </div>
+
+        <div>
+            <span>Edited:</span>
+            <label for="Edited_Yes">Yes</label>
+            <input type="radio" id="Edited_Yes" asp-for="Edited" value="true"/>
+            <label for="Edited_No">No</label>
+            <input type="radio" id="Edited_No" asp-for="Edited" value="false"/>
+            <label for="Edited_">N/A</label>
+            <input type="radio" id="Edited_" asp-for="Edited" value=""/>
+        </div>
+
+        <div>
+            <label asp-for="LentTo">Lent To:</label>
+            <input asp-for="LentTo" />
+        </div>
+
+        <div>
+            <label asp-for="Notes">Notes:</label>
+            <br />
+            <textarea asp-for="Notes" maxlength="25" rows="4" cols="30"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>

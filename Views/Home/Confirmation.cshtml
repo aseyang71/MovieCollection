@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Confirmation";
+    ViewBag.h1 = "You submission has been successfully saved!";
+}
+
+@model MovieCollection.Models.NewData
+
+<div>
+    <h1>@ViewBag.h1</h1> 
+</div> 
+
+<div>
+    <br />
+    <h2>To view current movie list, click <a asp-action="mvDB">Here</a></h2>
+</div>
