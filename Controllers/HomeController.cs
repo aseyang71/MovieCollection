@@ -23,11 +23,6 @@ namespace MovieCollection.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult MyPodcasts()
         {
             return View();
@@ -44,6 +39,11 @@ namespace MovieCollection.Controllers
         {
             TempStorage.AddApplication(MovieData);
             return View("Confirmation", MovieData);
+        /*  if (ModelState.IsValid)
+            {
+                Response.Redirect("Home/Index");
+            }
+            return View()*/
         }
 
         public IActionResult mvDB()

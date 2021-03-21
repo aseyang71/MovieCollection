@@ -14,7 +14,7 @@
         <div>
             <label asp-for="Category">Category:</label>
             <select asp-for="Category" required>
-                <option selected disabled>Select an option</option>
+                <option selected disabled>Select one</option>
                 <option value="Action/Adventure">Action/Adventure</option>
                 <option value="Comedy">Comedy</option>
                 <option value="Drama">Drama</option>
@@ -44,7 +44,7 @@
         <div>
             <label asp-for="Rating">Rating:</label>
             <select asp-for="Rating" required>
-                <option selected disabled>Select an option</option>
+                <option selected disabled>Select one</option>
                 <option value="G">G</option>
                 <option value="NR">NR</option>
                 <option value="PG">PG</option>
@@ -57,15 +57,13 @@
             </select>
         </div>
 
-        <div>
+@*        <div>
             <span>Edited:</span>
-            @*<label for="Edited_NA">N/A</label>
-            <input type="radio" id="Edited_NA" asp-for="Edited" value="" checked />*@
             <label for="Edited_Yes">Yes</label>
             <input type="radio" id="Edited_Yes" asp-for="Edited" value="true" />
             <label for="Edited_No">No</label>
             <input type="radio" id="Edited_No" asp-for="Edited" value="false" />
-        </div>
+        </div>*@
 
         <div>
             <label asp-for="LentTo">Lent To:</label>
@@ -80,3 +78,4 @@
         <button type="submit">Submit</button>
     </fieldset>
 </form>
+<div asp-validation-summary="All"></div>
