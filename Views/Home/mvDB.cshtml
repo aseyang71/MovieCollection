@@ -42,7 +42,7 @@
                 <td>@i.LentTo</td>
                 <td>@i.Notes</td>
                 <td class="text-center">
-                    <form asp-page-handler="Remove" method="post">
+                    <form asp-action="DeleteMovie" method="post">
                         @*<input type="hidden" name="ProductID"
                                value="@line.Product.ProductID" />
                         <input type="hidden" name="returnUrl"

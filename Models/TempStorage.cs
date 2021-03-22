@@ -14,6 +14,7 @@ namespace MovieCollection.Models
         public static void AddApplication (NewData application)
         {
             applications.Add(application);
+            
         }
     }
 }

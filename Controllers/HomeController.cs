@@ -12,10 +12,17 @@ namespace MovieCollection.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        // Initilize the connection
+        private mvCollectionRepository _mvCollectionRepository;
+        private mvCollectionDbContext _mvCollectionDbContext;
+        // Pass it thorugh
+        public HomeController(ILogger<HomeController> logger, mvCollectionRepository mvCollectionRepository, mvCollectionDbContext mvCollectionDbContext)
         {
             _logger = logger;
+            // Don't use this
+            _mvCollectionRepository = mvCollectionRepository;
+            // Storing in the Db
+            _mvCollectionDbContext = mvCollectionDbContext;
         }
 
         public IActionResult Index()
@@ -37,8 +44,11 @@ namespace MovieCollection.Controllers
         [HttpPost]
         public IActionResult Data(NewData MovieData)
         {
-            TempStorage.AddApplication(MovieData);
+            //TempStorage.AddApplication(MovieData);
+            _mvCollectionDbContext.NewDatas.Add(MovieData);
+            _mvCollectionDbContext.SaveChanges();
             return View("Confirmation", MovieData);
+
         /*  if (ModelState.IsValid)
             {
                 Response.Redirect("Home/Index");
@@ -46,9 +56,19 @@ namespace MovieCollection.Controllers
             return View()*/
         }
 
+        [HttpPost]
+        public IActionResult DeleteMovie(int Id)
+        {
+            NewData Movie = _mvCollectionDbContext.NewDatas.First(x => x.MovieId == Id);
+            _mvCollectionDbContext.Remove(Movie);
+            _mvCollectionDbContext.SaveChanges();
+            return RedirectToAction("mvDB");
+        }
+
         public IActionResult mvDB()
         {
-            return View(TempStorage.Applications);
+            return View (_mvCollectionDbContext.NewDatas);
+            //return View(TempStorage.Applications);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
