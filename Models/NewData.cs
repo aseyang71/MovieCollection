@@ -8,6 +8,9 @@ namespace MovieCollection.Models
 {
     public class NewData
     {
+        [Key]
+        public int MovieId { get; set; }
+
         [Required(ErrorMessage="This field is required!")]
         public String Category { get; set; }
 

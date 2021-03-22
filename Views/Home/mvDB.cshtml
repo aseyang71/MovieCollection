@@ -20,6 +20,7 @@
                 <th>Edited</th>
                 <th>Lent To</th>
                 <th>Notes</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -31,16 +32,27 @@
                 }
                 else
                 {
-                <tr>
-                    <td>@i.Category</td>
-                    <td>@i.Title</td>
-                    <td>@i.Year</td>
-                    <td>@i.Director</td>
-                    <td>@i.Rating</td>
-                    <td>@i.Edited</td> 
-                    <td>@i.LentTo</td>
-                    <td>@i.Notes</td>
-                </tr>
+            <tr>
+                <td>@i.Category</td>
+                <td>@i.Title</td>
+                <td>@i.Year</td>
+                <td>@i.Director</td>
+                <td>@i.Rating</td>
+                <td>@i.Edited</td>
+                <td>@i.LentTo</td>
+                <td>@i.Notes</td>
+                <td class="text-center">
+                    <form asp-page-handler="Remove" method="post">
+                        @*<input type="hidden" name="ProductID"
+                               value="@line.Product.ProductID" />
+                        <input type="hidden" name="returnUrl"
+                               value="@Model.ReturnUrl" />*@
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Remove
+                        </button>
+                    </form>
+                </td>
+            </tr>
                 }
 
             }
