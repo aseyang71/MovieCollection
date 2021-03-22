@@ -14,6 +14,6 @@ namespace MovieCollection.Models
         }
 
         public DbSet<NewData> NewDatas { get; set; }
-        public IQueryable<NewData> Newdatas { get; internal set; }
+        //public IQueryable<NewData> Newdatas { get; internal set; }
     }
 }

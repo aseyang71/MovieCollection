@@ -9,10 +9,10 @@ namespace MovieCollection.Models
 
 
         // Listing 10-12
-        IQueryable<NewData> newDatas { get; }
+        //IQueryable<NewData> newDatas { get; }
 
-        void SaveNewData(NewData newData);
-        void CreateNewData(NewData newData);
-        void DeleteNewData(NewData newData);
+        void SaveMovieData(NewData newData);
+        void CreateMovieData(NewData newData);
+        void DeleteMovieData(NewData newData);
     }
 }

@@ -13,25 +13,25 @@ namespace MovieCollection.Models
             _context = context;  
         }
 
-        public IQueryable<NewData> NewDatas => _context.Newdatas;
+        public IQueryable<NewData> NewDatas => _context.NewDatas;
 
         // Listing 10-13
 
         public IQueryable<NewData> newDatas => throw new NotImplementedException();
 
-        public void CreateNewData(NewData newData)
+        public void CreateMovieData(NewData newData)
         {
             _context.Add(newData);
             _context.SaveChanges();
         }
 
-        public void DeleteNewData(NewData newData)
+        public void DeleteMovieData(NewData newData)
         {
             _context.Remove(newData);
             _context.SaveChanges();
         }
 
-        public void SaveNewData(NewData newData)
+        public void SaveMovieData(NewData newData)
         {
             _context.SaveChanges();
         }

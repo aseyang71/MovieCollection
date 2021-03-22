@@ -57,9 +57,11 @@ namespace MovieCollection.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteMovie(int Id)
+        public IActionResult DeleteMovie(int MovieId)
         {
-            NewData Movie = _mvCollectionDbContext.NewDatas.First(x => x.MovieId == Id);
+            NewData Movie = _mvCollectionDbContext.NewDatas.First(x => x.MovieId == MovieId);
+            //NewData Movie = _mvCollectionDbContext.NewDatas.Find(MovieId);
+
             _mvCollectionDbContext.Remove(Movie);
             _mvCollectionDbContext.SaveChanges();
             return RedirectToAction("mvDB");
