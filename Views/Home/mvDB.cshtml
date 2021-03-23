@@ -20,7 +20,8 @@
                 <th>Edited</th>
                 <th>Lent To</th>
                 <th>Notes</th>
-                <th>CRUD</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,24 +33,34 @@
                 }
                 else
                 {
-                    <tr>
-                        <td>@i.Category</td>
-                        <td>@i.Title</td>
-                        <td>@i.Year</td>
-                        <td>@i.Director</td>
-                        <td>@i.Rating</td>
-                        <td>@i.Edited</td>
-                        <td>@i.LentTo</td>
-                        <td>@i.Notes</td>
-                        <td class="text-center">
-                            <form asp-action="DeleteMovie" method="post">
-                                <input type="hidden" name="MovieId" value="@i.MovieId" />
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    Remove
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+            <tr>
+                <td>@i.Category</td>
+                <td>@i.Title</td>
+                <td>@i.Year</td>
+                <td>@i.Director</td>
+                <td>@i.Rating</td>
+                <td>@i.Edited</td>
+                <td>@i.LentTo</td>
+                <td>@i.Notes</td>
+                <td class="text-center">
+                    <form asp-action="DeleteMovie" method="post">
+                        <input type="hidden" name="MovieId" value="@i.MovieId" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Remove
+                        </button>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <form asp-action="EditMovie" method="post">
+                        <input type="hidden" name="MovieId" value="@i.MovieId" />
+                        <button type="submit" class="btn btn-sm btn-warning">
+                            Edit
+                        </button>
+                    </form>
+                </td>
+
+                
+            </tr>
                 }
 
             }
