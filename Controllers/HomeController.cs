@@ -57,9 +57,9 @@ namespace MovieCollection.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteMovie(int MovieId)
+        public IActionResult DeleteMovie(int movieId)
         {
-            NewData Movie = _mvCollectionDbContext.NewDatas.First(x => x.MovieId == MovieId);
+            NewData Movie = _mvCollectionDbContext.NewDatas.First(x => x.MovieId == movieId);
             //NewData Movie = _mvCollectionDbContext.NewDatas.Find(MovieId);
 
             _mvCollectionDbContext.Remove(Movie);
@@ -68,20 +68,15 @@ namespace MovieCollection.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditMovie(int MovieId)
+        public IActionResult EditMovie(int movieId)
         {
-            NewData Movie = _mvCollectionDbContext.NewDatas.First(x => x.MovieId == MovieId);
+            NewData Movie = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
 
             //_mvCollectionDbContext.Update(Movie);
             //_mvCollectionDbContext.SaveChanges();
-            return View();
+            return View("EditMovie", Movie);
         }
 
-        public IActionResult mvDB()
-        {
-            return View (_mvCollectionDbContext.NewDatas);
-            //return View(TempStorage.Applications);
-        }
 
         [HttpPost]
         public IActionResult SaveChanges(NewData mr, int movieid)
@@ -95,8 +90,8 @@ namespace MovieCollection.Controllers
             if (ModelState.IsValid)
             {
                 //Update the values of the movie corresponding with the movieid passed in
-                MovieToOverwrite.Title = mr.Title;
                 MovieToOverwrite.Category = mr.Category;
+                MovieToOverwrite.Title = mr.Title;
                 MovieToOverwrite.Year = mr.Year;
                 MovieToOverwrite.Director = mr.Director;
                 MovieToOverwrite.Rating = mr.Rating;
@@ -112,7 +107,7 @@ namespace MovieCollection.Controllers
 
 
                 //Route to view movies page; exclude Independence Day from being displayed
-                return View("ViewMovies", _mvCollectionDbContext.NewDatas.Where(m => m.Title != "Independence Day"));
+                return View("mvDB", _mvCollectionDbContext.NewDatas.Where(m => m.Title != "Independence Day"));
             }
 
 
@@ -121,6 +116,14 @@ namespace MovieCollection.Controllers
             //Not sure how to repass original movie data...
             return View("mvDB", mr);
         }
+
+
+        public IActionResult mvDB()
+        {
+            return View ("mvDB", _mvCollectionDbContext.NewDatas);
+            //return View(TempStorage.Applications);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
