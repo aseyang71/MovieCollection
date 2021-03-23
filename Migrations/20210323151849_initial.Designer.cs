@@ -9,8 +9,8 @@ using MovieCollection.Models;
 namespace MovieCollection.Migrations
 {
     [DbContext(typeof(mvCollectionDbContext))]
-    [Migration("20210322211946_Initial")]
-    partial class Initial
+    [Migration("20210323151849_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -79,42 +79,36 @@ namespace MovieCollection.Controllers
 
 
         [HttpPost]
-        public IActionResult SaveChanges(NewData mr, int movieid)
+        public IActionResult SaveChanges(NewData Movie, int movieId)
         {
             //Identify which movie corresponds to the id passed in 
-            var MovieToOverwrite = _mvCollectionDbContext.NewDatas.Where(mr => mr.MovieId == movieid).FirstOrDefault();
-
-
+            NewData MovieToOverwrite = _mvCollectionDbContext.NewDatas.Where(mr => mr.MovieId == movieId).FirstOrDefault();
+            //var MovieToOverwrite = Movie.Where(mr => mr.MovieId == movieId).FirstOrDefault(); ;
 
             //Ensure form inputs are valid
             if (ModelState.IsValid)
             {
                 //Update the values of the movie corresponding with the movieid passed in
-                MovieToOverwrite.Category = mr.Category;
-                MovieToOverwrite.Title = mr.Title;
-                MovieToOverwrite.Year = mr.Year;
-                MovieToOverwrite.Director = mr.Director;
-                MovieToOverwrite.Rating = mr.Rating;
-                MovieToOverwrite.Edited = mr.Edited;
-                MovieToOverwrite.LentTo = mr.LentTo;
-                MovieToOverwrite.Notes = mr.Notes;
-
-
-
+                MovieToOverwrite.Category = Movie.Category;
+                MovieToOverwrite.Title = Movie.Title;
+                MovieToOverwrite.Year = Movie.Year;
+                MovieToOverwrite.Director = Movie.Director;
+                MovieToOverwrite.Rating = Movie.Rating;
+                MovieToOverwrite.Edited = Movie.Edited;
+                MovieToOverwrite.LentTo = Movie.LentTo;
+                MovieToOverwrite.Notes = Movie.Notes;
+            }
                 //Save changes to the DB
                 _mvCollectionDbContext.SaveChanges();
 
-
-
-                //Route to view movies page; exclude Independence Day from being displayed
-                return View("mvDB", _mvCollectionDbContext.NewDatas.Where(m => m.Title != "Independence Day"));
-            }
-
-
+            //Route to view movies page; exclude Independence Day from being displayed
+            return View("mvDB", _mvCollectionDbContext.NewDatas.Where(m => m.Title != "Independence Day"));
+    
 
             //If model is invalid, return to same page - show validation violations
             //Not sure how to repass original movie data...
-            return View("mvDB", mr);
+            //return View("mvDB", Movie);
+            //}
         }
 
 
