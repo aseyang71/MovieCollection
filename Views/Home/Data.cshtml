@@ -2,11 +2,12 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewBag.Title = "New Movie Data Entry";
+    ViewBag.Title = "Movie Data Entry Form";
 }
 
 @model MovieCollection.Models.NewData 
 
+@*Form to add movie record with all of the properties*@
 
 <h2>New Movie Data Entry Form</h2>
 <form asp-action="Data" method="post">
@@ -56,14 +57,6 @@
                 <option value="UR">UR</option>
             </select>
         </div>
-
-@*        <div>
-            <span>Edited:</span>
-            <label for="Edited_Yes">Yes</label>
-            <input type="radio" id="Edited_Yes" asp-for="Edited" value="true" />
-            <label for="Edited_No">No</label>
-            <input type="radio" id="Edited_No" asp-for="Edited" value="false" />
-        </div>*@
 
         <div>
             <label asp-for="LentTo">Lent To:</label>

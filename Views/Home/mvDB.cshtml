@@ -21,57 +21,47 @@
                 <th>Lent To</th>
                 <th>Notes</th>
                 <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
            @foreach (MovieCollection.Models.NewData i in Model)
             {
                @if (i.Title == "Independence Day")
-                {
-                    return;
-                }
-                else
-                {
-            <tr>
-                <td>@i.Category</td>
-                <td>@i.Title</td>
-                <td>@i.Year</td>
-                <td>@i.Director</td>
-                <td>@i.Rating</td>
-                <td>@i.Edited</td>
-                <td>@i.LentTo</td>
-                <td>@i.Notes</td>
-                <td class="text-center">
-                    <form asp-action="DeleteMovie" method="post">
-                        <input type="hidden" name="MovieId" value="@i.MovieId" />
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Remove
-                        </button>
-                    </form>
-                </td>
-                <td class="text-center">
-                    <form asp-action="EditMovie" method="get" asp-route-movieId="@i.MovieId">
-                        <input type="hidden" name="MovieId" value="@i.MovieId" />
-                        <button type="submit" class="btn btn-sm btn-warning">
-                            Edit
-                        </button>
-                    </form>
-                </td>
-            </tr>     
-                }
+               {
+                   return;
+               }
+               else
+               {
+                   // Exclude the movie "Independence Day" but displaying everything else 
+                    <tr>
+                        <td>@i.Category</td>
+                        <td>@i.Title</td>
+                        <td>@i.Year</td>
+                        <td>@i.Director</td>
+                        <td>@i.Rating</td>
+                        <td>@i.Edited</td>
+                        <td>@i.LentTo</td>
+                        <td>@i.Notes</td>
+                        <td class="text-center">
+                            @*buttons for update and delete movie records*@
+                            <form asp-action="DeleteMovie" method="post">
+                                <input type="hidden" name="MovieId" value="@i.MovieId" />
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Remove
+                                </button>
+                            </form>
 
+                            <form asp-action="EditMovie" method="get" asp-route-movieId="@i.MovieId">
+                                <input type="hidden" name="MovieId" value="@i.MovieId" />
+                                <button type="submit" class="btn btn-sm btn-warning">
+                                    Edit
+                                </button>
+                            </form>
+                        </td>
+                    </tr>     
+                }
             }
         </tbody>
     </table>
 </div>
 
-<!--<form asp-action="DeleteMovieData" method="post">-->
-@*<input type="hidden" name="ProductID"
-    value="@line.Product.ProductID" />
-    <input type="hidden" name="returnUrl"
-           value="@Model.ReturnUrl" />*@
-<!--<button type="submit" class="btn btn-sm btn-danger">
-        Remove
-    </button>
-</form>-->

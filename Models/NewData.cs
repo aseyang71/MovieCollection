@@ -8,6 +8,7 @@ namespace MovieCollection.Models
 {
     public class NewData
     {
+        // Set MovieId to be the key to be used for update and delete function in the controller.
         [Key]
         public int MovieId { get; set; }
 

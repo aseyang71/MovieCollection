@@ -5,6 +5,11 @@
     <h2>Make Changes to This Movie</h2>
     <form asp-action="EditMovie" method="post">
         <fieldset>
+
+            <div>
+                <label asp-for="MovieId"></label>
+                <input type="hidden" asp-for="MovieId" required />
+            </div>
             <div>
                 <label asp-for="Category">Category:</label>
                 <select asp-for="Category" required>
@@ -33,6 +38,22 @@
             <div>
                 <label asp-for="Director">Director:</label>
                 <input asp-for="Director" required />
+            </div>
+
+            <div>
+                <label asp-for="Rating">Rating:</label>
+                <select asp-for="Rating" required>
+                    <option selected disabled>Select one</option>
+                    <option value="G">G</option>
+                    <option value="NR">NR</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                    <option value="TV-14">TV-14</option>
+                    <option value="TV-PG">TV-PG</option>
+                    <option value="TV-Y7">TV-Y7</option>
+                    <option value="UR">UR</option>
+                </select>
             </div>
 
             <div>

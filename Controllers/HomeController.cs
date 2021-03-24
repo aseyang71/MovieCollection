@@ -19,7 +19,7 @@ namespace MovieCollection.Controllers
         public HomeController(ILogger<HomeController> logger, mvCollectionRepository mvCollectionRepository, mvCollectionDbContext mvCollectionDbContext)
         {
             _logger = logger;
-            // Don't use this
+            // Don't need to use this, I keep here for personal notes
             _mvCollectionRepository = mvCollectionRepository;
             // Storing in the Db
             _mvCollectionDbContext = mvCollectionDbContext;
@@ -64,20 +64,28 @@ namespace MovieCollection.Controllers
         
         public IActionResult EditMovie(int movieId)
         {
+            // Use "movieId" to identify which movie record we will open the edit form for. 
             NewData movie = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
 
-            return View("EditMovie", movie);
+            // Take the user to the Edit form where they can modify each record 
+            return View(movie);
         }
 
         [HttpPost]
         public IActionResult EditMovie(NewData movie, int movieId)
         {
-            var UpdatedMV = _mvCollectionDbContext.NewDatas.Where(i => i.MovieId == movieId).FirstOrDefault();
-            //var UpdatedMV = _mvCollectionDbContext.NewDatas.FirstOrDefault(i => i.MovieId == movieId);
+            // Store the movie object that we want to modify that has the same id(used to verify if it's the same record) to be able to write shorter code below. 
+            var UpdatedMV = _mvCollectionDbContext.NewDatas.FirstOrDefault(i => i.MovieId == movieId);
 
+            // For note taking 
+            // var UpdatedMV = _mvCollectionDbContext.NewDatas.Single(i => i.MovieId == movieId);
+            // var UpdatedMV = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
 
-            if (UpdatedMV != null)
+            // Make sure the variable is now storing the object and the Model is valid
+            if (UpdatedMV != null && ModelState.IsValid)
             {
+
+                // Update each property of that movie 
                 UpdatedMV.Category = movie.Category;
                 UpdatedMV.Title = movie.Title;
                 UpdatedMV.Year = movie.Year;
@@ -94,6 +102,9 @@ namespace MovieCollection.Controllers
             }
             else
                 return View("Index");
+
+
+            // For note taking
 
             //var UpdatedMV = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
             //var UpdatedMV = _mvCollectionDbContext.NewDatas.Single(x => x.MovieId == movieId);
