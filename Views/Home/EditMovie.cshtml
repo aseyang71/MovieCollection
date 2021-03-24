@@ -3,11 +3,11 @@
 
 <body>
     <h2>Make Changes to This Movie</h2>
-    <form asp-action="SaveChanges" method="post">
+    <form asp-action="EditMovie" method="post">
         <fieldset>
             <div>
                 <label asp-for="Category">Category:</label>
-                <select asp-for="Category" value="@Model.Category" required>
+                <select asp-for="Category" required>
                     <option selected disabled>Select one</option>
                     <option value="Action/Adventure">Action/Adventure</option>
                     <option value="Comedy">Comedy</option>
@@ -22,63 +22,28 @@
 
             <div>
                 <label asp-for="Title">Title:</label>
-                <input value="@Model.Title" asp-for="Title" required />
+                <input asp-for="Title" required />
             </div>
 
             <div>
                 <label asp-for="Year">Year:</label>
-                <input value="@Model.Year" asp-for="Year" required />
+                <input asp-for="Year" required />
             </div>
 
             <div>
                 <label asp-for="Director">Director:</label>
-                <input value="@Model.Director" asp-for="Director" required />
-            </div>
-
-            <div>
-                <label asp-for="Rating">Rating: </label>
-                <select vocab="@Model.Rating" asp-for="Rating">
-                    <!--<option value="">Select One</option>-->
-                    @if (Model.Rating == "G")
-                    {
-                        <option value="G" selected>G</option>
-                        <option value="PG">PG</option>
-                        <option value="PG-13">PG-13</option>
-                        <option value="R">R</option>
-                    }
-                    else if (Model.Rating == "PG")
-                    {
-                        <option value="G">G</option>
-                        <option value="PG" selected>PG</option>
-                        <option value="PG-13">PG-13</option>
-                        <option value="R">R</option>
-                    }
-                    else if (Model.Rating == "PG-13")
-                    {
-                        <option value="G">G</option>
-                        <option value="PG">PG</option>
-                        <option value="PG-13" selected>PG-13</option>
-                        <option value="R">R</option>
-                    }
-                    else
-                    {
-                        <option value="G">G</option>
-                        <option value="PG">PG</option>
-                        <option value="PG-13">PG-13</option>
-                        <option value="R">R</option>
-                    }
-                </select>
+                <input asp-for="Director" required />
             </div>
 
             <div>
                 <label asp-for="LentTo">Lent To:</label>
-                <input value="@Model.LentTo" asp-for="LentTo" />
+                <input asp-for="LentTo" />
             </div>
 
             <div>
                 <label asp-for="Notes">Notes:</label>
                 <br />
-                <textarea value="@Model.Notes" asp-for="Notes" maxlength="25" rows="4" cols="30"></textarea>
+                <textarea asp-for="Notes" maxlength="25" rows="4" cols="30"></textarea>
             </div>
             <button type="submit">Save Changes</button>
         </fieldset>

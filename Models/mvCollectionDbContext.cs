@@ -8,12 +8,13 @@ namespace MovieCollection.Models
 {
     public class mvCollectionDbContext : DbContext
     {
+        public DbSet<NewData> NewDatas { get; set; }
         public mvCollectionDbContext (DbContextOptions<mvCollectionDbContext> options) : base (options)
         {
 
         }
 
-        public DbSet<NewData> NewDatas { get; set; }
+        
         //public IQueryable<NewData> Newdatas { get; internal set; }
     }
 }

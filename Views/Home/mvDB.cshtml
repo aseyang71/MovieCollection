@@ -25,9 +25,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (MovieCollection.Models.NewData i in Model)
+           @foreach (MovieCollection.Models.NewData i in Model)
             {
-                @if (i.Title == "Independence Day")
+               @if (i.Title == "Independence Day")
                 {
                     return;
                 }
@@ -51,16 +51,14 @@
                     </form>
                 </td>
                 <td class="text-center">
-                    <form asp-action="EditMovie" method="post">
+                    <form asp-action="EditMovie" method="get" asp-route-movieId="@i.MovieId">
                         <input type="hidden" name="MovieId" value="@i.MovieId" />
                         <button type="submit" class="btn btn-sm btn-warning">
                             Edit
                         </button>
                     </form>
                 </td>
-
-                
-            </tr>
+            </tr>     
                 }
 
             }

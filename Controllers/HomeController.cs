@@ -48,12 +48,6 @@ namespace MovieCollection.Controllers
             _mvCollectionDbContext.NewDatas.Add(MovieData);
             _mvCollectionDbContext.SaveChanges();
             return View("Confirmation", MovieData);
-
-        /*  if (ModelState.IsValid)
-            {
-                Response.Redirect("Home/Index");
-            }
-            return View()*/
         }
 
         [HttpPost]
@@ -67,55 +61,55 @@ namespace MovieCollection.Controllers
             return RedirectToAction("mvDB");
         }
 
-        [HttpPost]
+        
         public IActionResult EditMovie(int movieId)
         {
-            NewData Movie = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
+            NewData movie = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
 
-            //_mvCollectionDbContext.Update(Movie);
-            //_mvCollectionDbContext.SaveChanges();
-            return View("EditMovie", Movie);
+            return View("EditMovie", movie);
         }
 
-
         [HttpPost]
-        public IActionResult SaveChanges(NewData Movie, int movieId)
+        public IActionResult EditMovie(NewData movie, int movieId)
         {
-            //Identify which movie corresponds to the id passed in 
-            NewData MovieToOverwrite = _mvCollectionDbContext.NewDatas.Where(mr => mr.MovieId == movieId).FirstOrDefault();
-            //var MovieToOverwrite = Movie.Where(mr => mr.MovieId == movieId).FirstOrDefault(); ;
+            var UpdatedMV = _mvCollectionDbContext.NewDatas.Where(i => i.MovieId == movieId).FirstOrDefault();
+            //var UpdatedMV = _mvCollectionDbContext.NewDatas.FirstOrDefault(i => i.MovieId == movieId);
 
-            //Ensure form inputs are valid
-            if (ModelState.IsValid)
+
+            if (UpdatedMV != null)
             {
-                //Update the values of the movie corresponding with the movieid passed in
-                MovieToOverwrite.Category = Movie.Category;
-                MovieToOverwrite.Title = Movie.Title;
-                MovieToOverwrite.Year = Movie.Year;
-                MovieToOverwrite.Director = Movie.Director;
-                MovieToOverwrite.Rating = Movie.Rating;
-                MovieToOverwrite.Edited = Movie.Edited;
-                MovieToOverwrite.LentTo = Movie.LentTo;
-                MovieToOverwrite.Notes = Movie.Notes;
-            }
+                UpdatedMV.Category = movie.Category;
+                UpdatedMV.Title = movie.Title;
+                UpdatedMV.Year = movie.Year;
+                UpdatedMV.Rating = movie.Rating;
+                UpdatedMV.Edited = movie.Edited;
+                UpdatedMV.LentTo = movie.LentTo;
+                UpdatedMV.Notes = movie.Notes;
+
                 //Save changes to the DB
                 _mvCollectionDbContext.SaveChanges();
 
-            //Route to view movies page; exclude Independence Day from being displayed
-            return View("mvDB", _mvCollectionDbContext.NewDatas.Where(m => m.Title != "Independence Day"));
-    
+                //Route to view movies page
+                return RedirectToAction("mvDB");
+            }
+            else
+                return View("Index");
 
-            //If model is invalid, return to same page - show validation violations
-            //Not sure how to repass original movie data...
-            //return View("mvDB", Movie);
-            //}
+            //var UpdatedMV = _mvCollectionDbContext.NewDatas.First(i => i.MovieId == movieId);
+            //var UpdatedMV = _mvCollectionDbContext.NewDatas.Single(x => x.MovieId == movieId);
+
+/*          _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.Category).CurrentValue = movie.Category;
+            _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.Title).CurrentValue = movie.Title;
+            _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.Year).CurrentValue = movie.Year;
+            _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.Rating).CurrentValue = movie.Rating;
+            _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.Edited).CurrentValue = movie.Edited;
+            _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.LentTo).CurrentValue = movie.LentTo;
+            _mvCollectionDbContext.Entry(UpdatedMV).Property(x => x.Notes).CurrentValue = movie.Notes;*/
         }
-
 
         public IActionResult mvDB()
         {
             return View ("mvDB", _mvCollectionDbContext.NewDatas);
-            //return View(TempStorage.Applications);
         }
 
 
